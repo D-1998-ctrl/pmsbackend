@@ -9,8 +9,4 @@ router.delete('/organizertemplate/:id', deleteOrganizerTemplate)
 router.patch('/organizertemplate/:id', updateOrganizerTemplate)
 
 
-
-
-
-
 module.exports = router

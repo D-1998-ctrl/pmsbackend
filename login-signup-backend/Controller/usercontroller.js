@@ -8,9 +8,6 @@ const { check, validationResult } = require('express-validator');
 const validator = require('validator')
 const bcrypt = require('bcrypt');
 
-
-
-
 const createToken = (_id, timeout) => {
     return jqwt.sign({ _id }, process.env.SECRET, { expiresIn: timeout })
 }
@@ -207,8 +204,6 @@ const signupEmail = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
-
-
 
 //VERIFY OTP
 const verifyOTP = (req, res) => {

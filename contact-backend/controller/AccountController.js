@@ -10,9 +10,9 @@ const createAccount = async (req, res) => {
         let newAccount;
         let newCompanyAccount;
 
-        const { clientType, accountName, tags, teamMember, contacts,  active } = req.body;
+        const { clientType, accountName, tags, teamMember, contacts,  active,userid } = req.body;
 
-        newAccount = await Accounts.create({ clientType, accountName, tags, teamMember, contacts,  active });
+        newAccount = await Accounts.create({ clientType,userid, accountName, tags, teamMember, contacts,  active });
 
         if (clientType === 'Company') {
             const { companyName, country, streetAddress, city, state, postalCode, active } = req.body;

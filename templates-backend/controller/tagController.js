@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Tags = require('../models/tagsModel');
+const Tags = require('../../Login-Signup/Models/tagsModel');
 
 
 // get all tags

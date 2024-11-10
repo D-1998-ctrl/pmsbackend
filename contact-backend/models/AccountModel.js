@@ -6,6 +6,10 @@ const accountSchema = new mongoose.Schema({
         required: [true, 'Client type is required'],
 
     },
+    userid:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
     accountName: {
         type: String,
         required: [true, 'Account name is required'],

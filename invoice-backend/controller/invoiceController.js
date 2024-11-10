@@ -1,6 +1,8 @@
 const Invoice = require('../models/invoiceModel');
 const mongoose = require("mongoose");
-
+const User = require('../models/userModel')
+const Accounts = require('../models/AccountModel')
+const InvoiceTemplate = require('../models/invoiceTemplateModel')
 //get all Invoice
 const getInvoices = async (req, res) => {
     try {
@@ -115,7 +117,7 @@ const getInvoiceList = async (req, res) => {
     const invoiceList = [];
     try {
         const invoice = await Invoice.find()
-            .populate({ path: 'account', model: 'account' })
+            .populate({ path: 'account', model: 'Accounts' })
             .populate({ path: 'teammember', model: 'User' });
 
         const account = invoice.account.map(accountname);
@@ -149,7 +151,7 @@ const getInvoiceListbyid = async (req, res) => {
    
     try {
         const invoice = await Invoice.findById(id)
-            .populate({ path: 'account', model: 'account' })
+            .populate({ path: 'account', model: 'Accounts' })
             .populate({ path: 'invoicetemplate', model: 'InvoiceTemplate' })
             .populate({ path: 'teammember', model: 'User' });
 
@@ -160,6 +162,29 @@ const getInvoiceListbyid = async (req, res) => {
     }
 };
 
+//Get a single InvoiceList List
+const getInvoiceListByAccountId = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Find all invoices associated with the account ID
+        const invoices = await Invoice.find({ account: id })
+            .populate({ path: 'account', model: 'Accounts' })
+            .populate({ path: 'invoicetemplate', model: 'InvoiceTemplate' })
+            .populate({ path: 'teammember', model: 'User' });
+
+        // Check if any invoices were found
+        if (invoices.length === 0) {
+            return res.status(404).json({ message: "No invoices found for this account" });
+        }
+
+        res.status(200).json({ message: "Invoices retrieved successfully", invoices });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
 
 module.exports = {
     createInvoice,
@@ -169,4 +194,5 @@ module.exports = {
     updateInvoice,
     getInvoiceList,
     getInvoiceListbyid,
+    getInvoiceListByAccountId
 }

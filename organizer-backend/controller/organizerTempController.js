@@ -1,6 +1,7 @@
 const OrganizerTemplate = require('../models/organizerTempModel');
 const mongoose = require("mongoose");
 
+
 //get all OrganizerTemplate
 const getOrganizerTemplates = async (req, res) => {
   try {
@@ -11,6 +12,7 @@ const getOrganizerTemplates = async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 };
+
 
 //Get a single OrganizerTemplate
 const getOrganizerTemplate = async (req, res) => {

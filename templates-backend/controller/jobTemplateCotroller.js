@@ -38,7 +38,7 @@ const getJobTemplate = async (req, res) => {
 
 //POST a new JobTemplate 
 const createJobTemplate = async (req, res) => {
-    const { templatename, jobname, addshortcode, description, jobassignees, priority, absolutedates, startsin, startsinduration, duein, dueinduration, startdate, enddate, comments, active } = req.body;
+    const { templatename, jobname, addshortcode, description, jobassignees, priority, absolutedates, startsin, startsinduration, duein, dueinduration, startdate, enddate, comments,showinclientportal, jobnameforclient, clientfacingstatus, active } = req.body;
 
     try {
         
@@ -51,7 +51,7 @@ const createJobTemplate = async (req, res) => {
             return res.status(400).json({ error: "Job template already exists" });
         }
         // If no existing template is found, create a new one
-        const newJobTemplate = await JobTemplate.create({ templatename, jobname, description, addshortcode, jobassignees, priority, absolutedates, startsin, startsinduration, duein, dueinduration, startdate, enddate, comments, active
+        const newJobTemplate = await JobTemplate.create({ templatename, jobname, description, addshortcode, jobassignees, priority, absolutedates, startsin, startsinduration, duein, dueinduration, startdate, enddate, comments, showinclientportal, jobnameforclient, clientfacingstatus,active
         });
         return res.status(201).json({ message: "Job template created successfully", newJobTemplate });
     } catch (error) {

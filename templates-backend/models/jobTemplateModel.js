@@ -71,6 +71,18 @@ const jobTemplateSchema = new mongoose.Schema({
     comments:{
         type: String
     },
+    showinclientportal: {
+        type: Boolean
+    },
+
+    jobnameforclient: {
+        type: String
+    },
+
+    clientfacingstatus: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ClientFacingjobStatus',
+    },
     active: {
         type: Boolean,
         default: true

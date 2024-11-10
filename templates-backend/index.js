@@ -12,6 +12,8 @@ const serviceRoutes = require('./routes/serviceRoutes')
 const CategoryRoutes = require('./routes/CategoryRoutes')
 const invoiceTemplateRoutes = require('./routes/invoiceTemplateRoutes')
 const ChatTemplateRoutes = require('./routes/ChatTempRoutes');
+const ClientfacingjobstatusRoutes =require('./routes/ClientfacingjobstatusRoutes')
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -43,10 +45,15 @@ app.use('/workflow/category', CategoryRoutes)
 // routes for category
 app.use('/workflow/invoicetemp', invoiceTemplateRoutes)
 
-
+// routes for clientfacing 
+app.use('/workflow/clientfacingjobstatus', ClientfacingjobstatusRoutes);
 app.use('/Workflow/chats', ChatTemplateRoutes)
+
+
 // database connect
 dbconnect()
+
+
 
 const port = process.env.PORT || 7500;
 app.listen(port, () => {
