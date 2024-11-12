@@ -13,7 +13,7 @@ const CategoryRoutes = require('./routes/CategoryRoutes')
 const invoiceTemplateRoutes = require('./routes/invoiceTemplateRoutes')
 const ChatTemplateRoutes = require('./routes/ChatTempRoutes');
 const ClientfacingjobstatusRoutes =require('./routes/ClientfacingjobstatusRoutes')
-
+const ProposalsandelsRoutes = require("./routes/ProposalsandelsRoutes");
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -49,7 +49,7 @@ app.use('/workflow/invoicetemp', invoiceTemplateRoutes)
 app.use('/workflow/clientfacingjobstatus', ClientfacingjobstatusRoutes);
 app.use('/Workflow/chats', ChatTemplateRoutes)
 
-
+app.use("/Workflow/proposalesandels", ProposalsandelsRoutes);
 // database connect
 dbconnect()
 
